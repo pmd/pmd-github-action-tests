@@ -14,7 +14,9 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
     - uses: adangel/pmd-github-action@main
+      id: pmd
       with:
+        sourcePath: 'src/main/java'
         rulesets: 'ruleset.xml'
     - name: Fail build if there a violations
       if: steps.pmd.outputs.violations != 0
