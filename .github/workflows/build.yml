@@ -1,0 +1,21 @@
+name: Build
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+jobs:
+  pmd:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+    - uses: adangel/pmd-github-action@main
+      with:
+        rulesets: 'ruleset.xml'
+    - name: Fail build if there a violations
+      if: steps.pmd.outputs.violations != 0
+      run: exit 1
