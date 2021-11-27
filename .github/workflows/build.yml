@@ -13,7 +13,7 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '11'
-    - uses: pmd/pmd-github-action@main
+    - uses: pmd/pmd-github-action@v1
       id: pmd
       with:
         sourcePath: 'src/main/java'
