@@ -1,4 +1,5 @@
 public class AvoidCatchingThrowableSample {
+    
     public void bar() {
         try {
             // do something
