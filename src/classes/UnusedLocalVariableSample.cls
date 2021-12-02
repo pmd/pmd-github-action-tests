@@ -1,4 +1,5 @@
 public class UnusedLocalVariableSample {
+    
     public Boolean bar(String z) {
         String x = 'some string'; // not used
 
