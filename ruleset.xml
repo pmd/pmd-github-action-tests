@@ -9,7 +9,19 @@
         My custom rules
     </description>
 
-    <rule ref="category/java/errorprone.xml/AvoidCatchingThrowable" />
+    <rule ref="category/java/errorprone.xml/AvoidCatchingThrowable">
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock" />
+
+    <rule ref="category/java/errorprone.xml/UnconditionalIfStatement">
+        <priority>4</priority>
+    </rule>
+
+    <rule ref="category/java/bestpractices.xml/UseCollectionIsEmpty">
+        <priority>5</priority>
+    </rule>
 
 </ruleset>
 
