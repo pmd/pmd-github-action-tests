@@ -1,5 +1,7 @@
 name: Build
 on:
+  pull_request:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -11,6 +13,6 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '11'
-    - uses: pmd/pmd-github-action@main
+    - uses: adangel/pmd-github-action@main
       with:
         rulesets: 'ruleset.xml'
