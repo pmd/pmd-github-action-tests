@@ -9,6 +9,19 @@
         My custom rules
     </description>
 
-    <rule ref="category/apex/bestpractices.xml/UnusedLocalVariable" />
+    <rule ref="category/apex/bestpractices.xml/UnusedLocalVariable">
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/apex/codestyle.xml/WhileLoopsMustUseBraces" />
+
+    <rule ref="category/apex/codestyle.xml/OneDeclarationPerLine">
+        <priority>4</priority>
+    </rule>
+
+    <rule ref="category/apex/codestyle.xml/LocalVariableNamingConventions">
+        <priority>5</priority>
+    </rule>
+
 </ruleset>
 

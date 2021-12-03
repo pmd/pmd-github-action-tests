@@ -15,4 +15,4 @@ jobs:
         java-version: '11'
     - uses: pmd/pmd-github-action@features/annotation
       with:
-        rulesets: 'ruleset.xml'
+        rulesets: 'ruleset.xml,category/apex/codestyle.xml/FieldNamingConventions'
