@@ -6,7 +6,11 @@ on:
 
 jobs:
   pmd:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+      fail-fast: false
     steps:
     - uses: actions/checkout@v2
     - uses: pmd/pmd-github-action@features/annotation
