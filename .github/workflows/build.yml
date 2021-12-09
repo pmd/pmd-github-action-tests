@@ -13,7 +13,8 @@ jobs:
       fail-fast: false
     steps:
     - uses: actions/checkout@v2
-    - uses: pmd/pmd-github-action@features/annotation
+    #- uses: pmd/pmd-github-action@features/annotation
+    - uses: adangel/pmd-github-action@windows
       id: pmd
       with:
         sourcePath: 'src/main/java'
