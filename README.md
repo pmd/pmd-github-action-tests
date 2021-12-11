@@ -15,3 +15,4 @@ Active Rules:
 *   [UseCollectionIsEmpty](https://pmd.github.io/latest/pmd_rules_java_bestpractices.html#usecollectionisempty), at manual priority 5
 
 Note: The chosen priorities are arbitrary and just used to test different priorities. They are in no way a recommendation.
+
