@@ -3,3 +3,4 @@ public abstract class AbstractClassWithoutAnyMethodSample {
     int otherField;
 }
 
+
