@@ -13,9 +13,9 @@ jobs:
       fail-fast: false
     steps:
     - uses: actions/checkout@v2
-    #- uses: pmd/pmd-github-action@main
+    - uses: pmd/pmd-github-action@main
     #- uses: pmd/pmd-github-action@features/annotation
-    - uses: adangel/pmd-github-action@analyze-modified-files-only
+    #- uses: adangel/pmd-github-action@analyze-modified-files-only
       id: pmd
       with:
         sourcePath: 'src/main/java'
