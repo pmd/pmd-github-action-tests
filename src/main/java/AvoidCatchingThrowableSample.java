@@ -4,6 +4,7 @@ public class AvoidCatchingThrowableSample {
         try {
             // do something
         } catch (Throwable th) {  // should not catch Throwable
+            
             th.printStackTrace();
         }
     }

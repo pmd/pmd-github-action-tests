@@ -27,7 +27,7 @@ jobs:
         with:
           rulesets: 'rulesets/java/quickstart.xml'
           sourcePath: 'src/main/java'
-          analyzeModifiedFilesOnly: false
+          #analyzeModifiedFilesOnly: false
       - name: relativize SARIF
         shell: bash
         run: |
