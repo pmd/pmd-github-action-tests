@@ -28,8 +28,12 @@ jobs:
           rulesets: 'rulesets/java/quickstart.xml'
           sourcePath: 'src/main/java'
           analyzeModifiedFilesOnly: false
+      - name: relativize SARIF
+        shell: bash
+        run: |
+          jq '.runs[0].results[].locations[].physicalLocation.artifactLocation.uri |= sub("/home/runner/work/pmd-github-action-tests/pmd-github-action-tests/"; "")' > pmd-report2.sarif
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         if: steps.pmd.outputs.violations != 0
         with:
-          sarif_file: pmd-report.sarif
+          sarif_file: pmd-report2.sarif
