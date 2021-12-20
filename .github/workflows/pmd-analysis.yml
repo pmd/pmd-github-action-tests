@@ -21,7 +21,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-          cache: maven
       - name: Run PMD
         id: pmd
         uses: pmd/pmd-github-action@7ed79622882840855e297f090460face22328ece
