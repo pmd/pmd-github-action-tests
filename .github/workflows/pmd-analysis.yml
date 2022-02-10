@@ -31,8 +31,8 @@ jobs:
           analyzeModifiedFilesOnly: false
       - name: Run PMD (Apex)
         if: ${{ github.ref_name == 'apex' }}
-        #uses: pmd/pmd-github-action@v1
-        uses: pmd/pmd-github-action@main
+        uses: pmd/pmd-github-action@v1
+        #uses: pmd/pmd-github-action@main
         with:
           rulesets: 'rulesets/apex/quickstart.xml'
           sourcePath: 'src/classes'
