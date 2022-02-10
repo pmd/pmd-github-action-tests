@@ -75,7 +75,7 @@ Some test cases...
     * the violation should appear on the correct line. annotations are created at "end line" by github.
       The comment in the file is at begin line and can be earlier.
 * The violations should appear as build annotations for the build
-    * note: the buils is srun 3 times for each OS
+    * note: the buils is run 3 times for each OS
     * in total there are 12 violations: 6 errors, 6 warnings
 
 ### Source path is used
@@ -162,5 +162,9 @@ Some test cases...
 
 **Expected:**
 
-* There should be one reported violation in the build
-* One annotation in the pull request "files" tab
+* There should be at least two reported violations in the build (bar and foo)
+    * note: the buils is run 3 times for each OS
+    * in total there are 6 violations (errors), two per OS
+* Two annotated locations in the pull request "Files changed" tab for (changed) file "AvoidCatchingThrowableSample.java"
+    * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
+
