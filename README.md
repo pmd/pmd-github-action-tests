@@ -41,7 +41,12 @@ Some test cases...
 * In total, there should be 10 reported violations - 5 in `AllInOne.java` and for each other file one.
 * All files should be from `src/main/java2` - violations in `src/main/java` should *not* be reported.
 * The violations should appear inline on the commit view on github (annotations)
+    * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
+    * the violation should appear on the correct line. annotations are created at "end line" by github.
+      The comment in the file is at begin line and can be earlier.
 * The violations should appear as build annotations for the build
+    * note: the build is run 3 times for each OS
+    * in total there are 30 violations: 12 errors, 12 warnings, 6 notices
 
 ### Violations in existing files
 
@@ -110,6 +115,26 @@ Some test cases...
 **Expected:**
 
 * Build build should be failed because of one violation
+
+### Code scanning alerts
+
+**Description:**
+
+* If the SARIF file is uploaded, the violations should appear in the project's security tab
+  under "Code scanning alerts".
+* It uses the quickstart.xml ruleset
+* it checks always all files under `src/main/java`
+
+**Execution steps:**
+
+1. Update version in `pmd-analysis.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+2. Push - that's the build that must be verified
+3. Revert and push - restore for next test case
+
+**Expected:**
+
+* Code scanning alerts are there under the project's security tab
+    * Note: these are rule violations from the quickstart ruleset
 
 ### Pull requests
 
