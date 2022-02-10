@@ -2,3 +2,4 @@ public abstract class AbstractClassWithoutAnyMethodSample { // should be reporte
     String field;
     int otherField;
 }
+
