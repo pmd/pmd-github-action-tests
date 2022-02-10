@@ -20,4 +20,4 @@ jobs:
       id: pmd
       with:
         rulesets: 'ruleset.xml,category/java/design.xml/AbstractClassWithoutAnyMethod'
-        sourcePath: 'src/main/java'
+        sourcePath: 'src/main/java/'
