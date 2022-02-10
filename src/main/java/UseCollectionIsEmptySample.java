@@ -12,3 +12,4 @@ public class UseCollectionIsEmptySample {
         return null;
     }
 }
+
