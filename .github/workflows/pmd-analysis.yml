@@ -22,7 +22,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-          cache: maven
       - name: Run PMD (Java)
         if: ${{ github.ref_name == 'java' }}
         uses: pmd/pmd-github-action@v1
