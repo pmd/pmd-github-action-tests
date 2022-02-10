@@ -8,8 +8,8 @@ name: pmd
 on:
   push:
     branches: [ apex, java ]
-  pull_request:
-    branches: [ apex, java ]
+  #pull_request:
+  #  branches: [ apex, java ]
   workflow_dispatch:
 
 jobs:
