@@ -1,6 +1,6 @@
 public class UnconditionalIfStatementSample {
     public void close() {
-        if (true) {        // fixed conditional, not recommended
+        if (true) {        // should be reported as "UnconditionalIfStatement" (prio 4, warning)
             // ...
         }
     }

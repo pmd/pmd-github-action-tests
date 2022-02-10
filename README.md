@@ -15,3 +15,116 @@ Active Rules:
 *   [UseCollectionIsEmpty](https://pmd.github.io/latest/pmd_rules_java_bestpractices.html#usecollectionisempty), at manual priority 5
 
 Note: The chosen priorities are arbitrary and just used to test different priorities. They are in no way a recommendation.
+
+## Test Cases
+
+Some test cases...
+
+### Violations in new files
+
+**Description:**
+
+* Integrated as "build" workflow on push
+* Only "rulesets" is configured, everything else is default
+* Changes are all new files
+
+**Execution steps:**
+
+1. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+2. Copy folder `src/main/java` to `src/main/java2` - these are the "changed" files
+3. Push - that's the build that must be verified
+4. Revert and push - restore for next test case
+
+**Expected:**
+
+* The latest PMD version should be used (check build logs)
+* In total, there should be 10 reported violations - 5 in `AllInOne.java` and for each other file one.
+* All files should be from `src/main/java2` - violations in `src/main/java` should *not* be reported.
+* The violations should appear inline on the commit view on github (annotations)
+* The violations should appear as build annotations for the build
+
+### Violations in existing files
+
+**Description:**
+
+* Integrated as "build" workflow on push
+* Only "rulesets" is configured, everything else is default
+* Two changes in two existing files
+
+**Execution steps:**
+
+1. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+2. Change file `src/main/java/AvoidCatchingThrowableSample.java` - copy method `bar` as `foo`.
+3. Change file `src/main/java/ReturnFromFinallyBlockSample.java` - copy method `bar` as `foo`.
+4. Push - that's the build that must be verified
+5. Revert and push - restore for next test case
+
+**Expected:**
+
+* In total, there should be 2 reported violations - one in each changed file
+* The violations should appear inline on the commit view on github (annotations)
+* The violations should appear as build annotations for the build
+
+### Source path is used
+
+**Description:**
+
+* Integrated as "build" workflow on push
+* "rulesets" is configured and "sourcePath", everything else is default
+* New files in unrelated folder
+
+**Execution steps:**
+
+1. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+2. Add parameter `sourcePath: 'src/main/java'` in `build.yml`
+3. Copy folder `src/main/java` to `src/main/java2` - these are the "changed" files
+4. Push - that's the build that must be verified
+5. Revert and push - restore for next test case
+
+**Expected:**
+
+* There should be no reported violations.
+* There should be no annotations in the commit view
+* There should be no annotations for the build
+
+### violations output parameter
+
+**Description:**
+
+* Build can be failed based on number of violations
+
+**Execution steps:**
+
+1. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+2. Add another step in `build.yml`:
+
+```yml
+    - name: Fail build if there a violations
+      if: steps.pmd.outputs.violations != 0
+      run: exit 1
+```
+3. Change file `src/main/java/AvoidCatchingThrowableSample.java` - copy method `bar` as `foo`.
+4. Push - that's the build that must be verified
+5. Revert and push - restore for next test case
+
+**Expected:**
+
+* Build build should be failed because of one violation
+
+### Pull requests
+
+**Description:**
+
+* Changes from pull request should be analyzed
+
+**Execution steps:**
+
+1. Create a new branch in your personal fork
+2. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+3. Change file `src/main/java/AvoidCatchingThrowableSample.java` - copy method `bar` as `foo`.
+4. Push branch and create a PR
+
+**Expected:**
+
+* There should be one reported violation in the build
+* One annotation in the pull request "files" tab

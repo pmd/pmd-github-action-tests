@@ -19,8 +19,4 @@ jobs:
     #- uses: adangel/pmd-github-action@analyze-modified-files-only
       id: pmd
       with:
-        sourcePath: 'src/main/java'
         rulesets: 'ruleset.xml,category/java/design.xml/AbstractClassWithoutAnyMethod'
-    - name: Fail build if there a violations
-      if: steps.pmd.outputs.violations != 0
-      run: exit 1
