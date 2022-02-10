@@ -116,8 +116,8 @@ Some test cases...
 **Expected:**
 
 * There should be at least two reported violations in the build (bar and foo)
-    * note: the buils is run 3 times for each OS
-    * in total there are 6 violations (errors), two per OS
-* Two annotated locations in the pull request "Files changed" tab for (changed) file "AvoidCatchingThrowableSample.java"
+    * note: the build is run 3 times for each OS
+    * in total there are 6 violations (notices), two per OS
+* Two annotated locations in the pull request "Files changed" tab for (changed) file "LocalVariableNamingConventionsSample.cls"
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
 
