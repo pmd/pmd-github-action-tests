@@ -66,9 +66,15 @@ Some test cases...
 
 **Expected:**
 
-* In total, there should be 2 reported violations - one in each changed file
+* In total, there should be 4 reported violations - two in each changed file. One new (foo) and one
+  that previously existed (bar).
 * The violations should appear inline on the commit view on github (annotations)
+    * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
+    * the violation should appear on the correct line. annotations are created at "end line" by github.
+      The comment in the file is at begin line and can be earlier.
 * The violations should appear as build annotations for the build
+    * note: the buils is srun 3 times for each OS
+    * in total there are 12 violations: 6 errors, 6 warnings
 
 ### Source path is used
 
