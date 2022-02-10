@@ -12,7 +12,8 @@ public class AllInOne {
 
     Integer a, b;   // should be reported as "OneDeclarationPerLine" (prio 4, warning)
 
-    public void localVariableNamingConventions() {
-        Integer LOCAL_VARIABLE; // should be reported as "localVariableNamingConventions" (prio 5, notice)
+    public Integer localVariableNamingConventions() {
+        Integer LOCAL_VARIABLE = 1; // should be reported as "localVariableNamingConventions" (prio 5, notice)
+        return LOCAL_VARIABLE;
     }
 }

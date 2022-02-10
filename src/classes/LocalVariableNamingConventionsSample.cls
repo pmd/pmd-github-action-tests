@@ -1,5 +1,6 @@
 public class LocalVariableNamingConventionsSample {
-    public void bar() {
-        Integer LOCAL_VARIABLE; // should be reported as "localVariableNamingConventions" (prio 5, notice)
+    public Integer bar() {
+        Integer LOCAL_VARIABLE = 1; // should be reported as "localVariableNamingConventions" (prio 5, notice)
+        return LOCAL_VARIABLE;
     }
 }
