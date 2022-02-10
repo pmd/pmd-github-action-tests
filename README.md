@@ -48,6 +48,7 @@ Some test cases...
 * The violations should appear as build annotations for the build
     * note: the build is run 3 times for each OS
     * in total there are 30 violations: 12 errors, 12 warnings, 6 notices
+* There is a "PMD Report" artifact on the build that contains the SARIF report.
 
 ### Violations in existing files
 
@@ -121,7 +122,7 @@ Some test cases...
 
 **Expected:**
 
-* Build build should be failed because of one violation
+* Build build should be failed because of two violations (bar and foo).
 
 ### Code scanning alerts
 
@@ -140,7 +141,10 @@ Some test cases...
 
 **Expected:**
 
+* Build with name "pmd" is successful. There are some build annotations.
+* There is a "PMD Report" artifact on the build that contains the SARIF report.
 * Code scanning alerts are there under the project's security tab
+    * <https://github.com/pmd/pmd-github-action-tests/security/code-scanning?query=is%3Aopen+branch%3Ajava>
     * Note: these are rule violations from the quickstart ruleset
 
 ### Pull requests
