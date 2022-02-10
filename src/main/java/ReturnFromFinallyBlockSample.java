@@ -8,5 +8,4 @@ public class ReturnFromFinallyBlockSample {
             return "A. O. K."; // should be reported as "ReturnFromFinallyBlock" (prio 3, warning)
         }
     }
-    
 }
