@@ -11,8 +11,8 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v2
       with:
-        distribution: 'temurin'
         java-version: '11'
+        distribution: 'temurin'
     - uses: pmd/pmd-github-action@v1
     #- uses: pmd/pmd-github-action@main
     #- uses: pmd/pmd-github-action@features/annotation
