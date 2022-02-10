@@ -75,7 +75,7 @@ Some test cases...
       The comment in the file is at begin line and can be earlier.
 * The violations should appear as build annotations for the build
     * note: the buils is run 3 times for each OS
-    * in total there are 12 violations: 6 errors, 6 warnings
+    * in total there are 12 violations: 6 errors, 6 notices
 
 ### Code scanning alerts
 
