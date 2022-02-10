@@ -26,6 +26,7 @@ Some test cases...
 
 * Integrated as "build" workflow on push
 * Only "rulesets" is configured, everything else is default
+* rulesets is a combination of two: the rulesets in the same project and a single selected built-in rule.
 * Changes are all new files
 
 **Execution steps:**
