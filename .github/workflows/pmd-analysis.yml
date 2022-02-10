@@ -9,7 +9,8 @@ on:
   push:
     branches: [ apex, java ]
   pull_request:
-    branches: [ apex, java ]  
+    branches: [ apex, java ]
+  workflow_dispatch:
 
 jobs:
   pmd-code-scan:
@@ -21,12 +22,20 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      - name: Run PMD
+      - name: Run PMD (Java)
+        if: ${{ github.ref_name == 'java' }}
         uses: pmd/pmd-github-action@v1
         #uses: pmd/pmd-github-action@main
         with:
           rulesets: 'rulesets/java/quickstart.xml'
           sourcePath: 'src/main/java'
+          analyzeModifiedFilesOnly: false
+      - name: Run PMD (Apex)
+        if: ${{ github.ref_name == 'apex' }}
+        uses: pmd/pmd-github-action@v1
+        with:
+          rulesets: 'rulesets/apex/quickstart.xml'
+          sourcePath: 'src/classes'
           analyzeModifiedFilesOnly: false
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
