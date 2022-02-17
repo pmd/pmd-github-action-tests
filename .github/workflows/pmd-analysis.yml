@@ -24,9 +24,8 @@ jobs:
           distribution: 'temurin'
       - name: Run PMD (Java)
         if: ${{ github.ref_name == 'java' }}
-        #uses: pmd/pmd-github-action@v1
+        uses: pmd/pmd-github-action@v1
         #uses: pmd/pmd-github-action@main
-        uses: adangel/pmd-github-action@issue-53-sarif-fix
         with:
           rulesets: 'rulesets/java/quickstart.xml'
           sourcePath: 'src/main/java'
