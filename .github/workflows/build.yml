@@ -21,4 +21,5 @@ jobs:
     #- uses: pmd/pmd-github-action@main
     #- uses: pmd/pmd-github-action@features/annotation
       with:
+        sourcePath: 'src/classes'
         rulesets: 'ruleset.xml,category/apex/codestyle.xml/FieldNamingConventions'
