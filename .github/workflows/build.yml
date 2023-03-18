@@ -18,10 +18,10 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     #- uses: pmd/pmd-github-action@v1
-    #- uses: pmd/pmd-github-action@main
+    - uses: pmd/pmd-github-action@main
     #- uses: pmd/pmd-github-action@features/annotation
-    - uses: adangel/pmd-github-action@support-pmd7
+    #- uses: adangel/pmd-github-action@support-pmd7
       with:
         rulesets: 'ruleset.xml,category/apex/codestyle.xml/FieldNamingConventions'
-        version: '7.0.0-SNAPSHOT'
-        downloadUrl: 'https://pmd-code.org/temp/pmd-bin-7.0.0-SNAPSHOT.zip'
+        #version: '7.0.0-SNAPSHOT'
+        #downloadUrl: 'https://sourceforge.net/projects/pmd/files/pmd/7.0.0-SNAPSHOT/pmd-bin-7.0.0-SNAPSHOT.zip/download'
