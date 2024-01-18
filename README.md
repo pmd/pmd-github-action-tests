@@ -41,10 +41,13 @@ Some test cases...
 * The latest PMD version should be used (check build logs)
 * In total, there should be 10 reported violations - 5 in `AllInOne.java` and for each other file one.
 * All files should be from `src/main/java2` - violations in `src/main/java` should *not* be reported.
-* The violations should appear inline on the commit view on github (annotations)
+* The violations should appear inline on the commit view on github (annotations), as "Check notice|warning|failure".
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
     * the violation should appear on the correct line. annotations are created at "end line" by github.
       The comment in the file is at begin line and can be earlier.
+    * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
+    * However, the annotations only appear as build annotations and not anymore on the commit view (last tested 2024-01-18)
+    * see [Annotations are not shown in PR / commit #249](https://github.com/pmd/pmd-github-action/issues/249)
 * The violations should appear as build annotations for the build
     * note: the build is run 3 times for each OS
     * in total there are 30 violations: 12 errors, 12 warnings, 6 notices
@@ -70,10 +73,13 @@ Some test cases...
 
 * In total, there should be 4 reported violations - two in each changed file. One new (foo) and one
   that previously existed (bar).
-* The violations should appear inline on the commit view on github (annotations)
+* The violations should appear inline on the commit view on github (annotations), as "Check notice|warning|failure".
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
     * the violation should appear on the correct line. annotations are created at "end line" by github.
       The comment in the file is at begin line and can be earlier.
+    * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
+    * However, the annotations only appear as build annotations and not anymore on the commit view (last tested 2024-01-18)
+    * see [Annotations are not shown in PR / commit #249](https://github.com/pmd/pmd-github-action/issues/249)
 * The violations should appear as build annotations for the build
     * note: the buils is run 3 times for each OS
     * in total there are 12 violations: 6 errors, 6 warnings
@@ -158,13 +164,51 @@ Some test cases...
 1. Create a new branch in your personal fork
 2. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
 3. Change file `src/main/java/AvoidCatchingThrowableSample.java` - copy method `bar` as `foo`.
-4. Push branch and create a PR
+4. Push branch and create a PR, base branch "java"
 
 **Expected:**
 
 * There should be at least two reported violations in the build (bar and foo)
-    * note: the buils is run 3 times for each OS
+    * note: the build is run 3 times for each OS
     * in total there are 6 violations (errors), two per OS
 * Two annotated locations in the pull request "Files changed" tab for (changed) file "AvoidCatchingThrowableSample.java"
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
+    * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
+    * However, the annotations only appear as build annotations and not anymore on the pull request "Files changed" tab (last tested 2024-01-18)
+    * see [Annotations are not shown in PR / commit #249](https://github.com/pmd/pmd-github-action/issues/249)
 
+### Pull Request with Comments
+
+**Description:**
+
+* Each violation should create a comment on the pull request
+* Two changes in two existing files, which are the violations
+* See [Added ability to add comments #246](https://github.com/pmd/pmd-github-action/pull/246)
+
+**Execution steps:**
+
+1. Create a new branch in your personal fork
+2. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+3. Add property `createGitHubComments` in `build.yml`:
+    ```yaml
+        with:
+            createGitHubComments: 'true'
+    ```
+4. Change file `src/main/java/AvoidCatchingThrowableSample.java` - copy method `bar` as `foo`.
+6. Push branch and create a PR, base branch "java"
+
+**Expected:**
+
+* There should be at least two reported violations in the build (bar and foo)
+    * note: the build is run 3 times for each OS
+    * in total there are 6 violations (errors), two per OS
+* Two annotated locations in the pull request "Files changed" tab for (changed) file "AvoidCatchingThrowableSample.java"
+    * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
+    * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
+    * However, the annotations only appear as build annotations and not anymore on the pull request "Files changed" tab (last tested 2024-01-18)
+* One new comment on the Pull Request with the content:
+  ```
+  :heavy_exclamation_mark: (2) - AvoidCatchingThrowableSample.java (Line:5)
+  :heavy_exclamation_mark: (2) - AvoidCatchingThrowableSample.java (Line:12)
+  ```
+  Note: The two violations in the same file results in one comment.
