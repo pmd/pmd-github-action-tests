@@ -4,6 +4,10 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: read # to fetch code (actions/checkout)
+  issues: write # create comments
+
 jobs:
   pmd:
     runs-on: ${{ matrix.os }}
@@ -17,11 +21,13 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '11'
-    - uses: pmd/pmd-github-action@v1
+    #- uses: pmd/pmd-github-action@v1
     #- uses: pmd/pmd-github-action@main
     #- uses: pmd/pmd-github-action@features/annotation
     #- uses: adangel/pmd-github-action@analyze-modified-files-only
+    - uses: pmd/pmd-github-action@pr-246
       id: pmd
       with:
         uploadSarifReport: ${{ runner.os == 'Linux' && 'true' || 'false' }}
         rulesets: 'ruleset.xml,category/java/design.xml/AbstractClassWithoutAnyMethod'
+        createGitHubComments: 'true'
