@@ -23,4 +23,5 @@ jobs:
     #- uses: adangel/pmd-github-action@analyze-modified-files-only
       id: pmd
       with:
+        uploadSarifReport: ${{ runner.os == 'Linux' && 'true' || 'false' }}
         rulesets: 'ruleset.xml,category/java/design.xml/AbstractClassWithoutAnyMethod'
