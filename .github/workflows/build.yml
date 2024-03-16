@@ -17,11 +17,10 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '11'
-    #- uses: pmd/pmd-github-action@v1
+    - uses: pmd/pmd-github-action@v1
     #- uses: pmd/pmd-github-action@main
     #- uses: pmd/pmd-github-action@features/annotation
     #- uses: adangel/pmd-github-action@analyze-modified-files-only
-    - uses: adangel/pmd-github-action@issue-249-relative-paths
       id: pmd
       with:
         uploadSarifReport: ${{ runner.os == 'Linux' && 'true' || 'false' }}
