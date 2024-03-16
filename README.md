@@ -47,12 +47,13 @@ Some test cases...
     * the violation should appear on the correct line. annotations are created at "end line" by github.
       The comment in the file is at begin line and can be earlier.
     * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
-    * However, the annotations only appear as build annotations and not anymore on the commit view (last tested 2024-01-18)
-    * see [Annotations are not shown in PR / commit #249](https://github.com/pmd/pmd-github-action/issues/249)
+    * If the annotations are not showing up here, then the reported file location might be wrong. For the
+      annotations to appear, relative paths must be reported.
 * The violations should appear as build annotations for the build
     * note: the build is run 3 times for each OS
     * in total there are 30 violations: 12 errors, 12 warnings, 6 notices
 * There is a "PMD Report" artifact on the build that contains the SARIF report.
+    * The report must contain relative paths as the locations.
 
 ### Violations in existing files
 
@@ -75,12 +76,13 @@ Some test cases...
 * In total, there should be 4 reported violations - two in each changed file. One new (foo) and one
   that previously existed (bar).
 * The violations should appear inline on the commit view on github (annotations), as "Check notice|warning|failure".
+    * https://github.com/pmd/pmd-github-action-tests/commits/java/
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
     * the violation should appear on the correct line. annotations are created at "end line" by github.
       The comment in the file is at begin line and can be earlier.
     * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
-    * However, the annotations only appear as build annotations and not anymore on the commit view (last tested 2024-01-18)
-    * see [Annotations are not shown in PR / commit #249](https://github.com/pmd/pmd-github-action/issues/249)
+    * If the annotations are not showing up here, then the reported file location might be wrong. For the
+      annotations to appear, relative paths must be reported.
 * The violations should appear as build annotations for the build
     * note: the buils is run 3 times for each OS
     * in total there are 12 violations: 6 errors, 6 warnings
@@ -173,10 +175,11 @@ Some test cases...
     * note: the build is run 3 times for each OS
     * in total there are 6 violations (errors), two per OS
 * Two annotated locations in the pull request "Files changed" tab for (changed) file "AvoidCatchingThrowableSample.java"
+    * https://github.com/pmd/pmd-github-action-tests/pulls
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
     * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
-    * However, the annotations only appear as build annotations and not anymore on the pull request "Files changed" tab (last tested 2024-01-18)
-    * see [Annotations are not shown in PR / commit #249](https://github.com/pmd/pmd-github-action/issues/249)
+    * If the annotations are not showing up here, then the reported file location might be wrong. For the
+      annotations to appear, relative paths must be reported.
 
 ### Pull Request with Comments
 
@@ -204,9 +207,11 @@ Some test cases...
     * note: the build is run 3 times for each OS
     * in total there are 6 violations (errors), two per OS
 * Two annotated locations in the pull request "Files changed" tab for (changed) file "AvoidCatchingThrowableSample.java"
+    * https://github.com/pmd/pmd-github-action-tests/pulls
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
     * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
-    * However, the annotations only appear as build annotations and not anymore on the pull request "Files changed" tab (last tested 2024-01-18)
+    * If the annotations are not showing up here, then the reported file location might be wrong. For the
+      annotations to appear, relative paths must be reported.
 * One new comment on the Pull Request with the content:
   ```
   :heavy_exclamation_mark: (2) - AvoidCatchingThrowableSample.java (Line:5)
