@@ -42,6 +42,7 @@ Some test cases...
 * In total, there should be 10 reported violations - 5 in `AllInOne.java` and for each other file one.
 * All files should be from `src/main/java2` - violations in `src/main/java` should *not* be reported.
 * The violations should appear inline on the commit view on github (annotations), as "Check notice|warning|failure".
+    * https://github.com/pmd/pmd-github-action-tests/commits/java/
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
     * the violation should appear on the correct line. annotations are created at "end line" by github.
       The comment in the file is at begin line and can be earlier.
