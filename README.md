@@ -123,7 +123,7 @@ Some test cases...
 2. Add another step in `build.yml`:
 
 ```yml
-    - name: Fail build if there a violations
+    - name: Fail build if there are violations
       if: steps.pmd.outputs.violations != 0
       run: exit 1
 ```
