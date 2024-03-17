@@ -83,8 +83,10 @@ Some test cases...
     * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
     * If the annotations are not showing up here, then the reported file location might be wrong. For the
       annotations to appear, relative paths must be reported.
+    * Note: The annotation for the existing code might not be visible: If the violation is outside of
+      the diff-context, then GitHub won't show the annotation.
 * The violations should appear as build annotations for the build
-    * note: the buils is run 3 times for each OS
+    * note: the build is run 3 times for each OS
     * in total there are 12 violations: 6 errors, 6 warnings
 
 ### Source path is used
