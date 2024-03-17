@@ -41,9 +41,12 @@ Some test cases...
 * In total, there should be 10 reported violations - 5 in `AllInOne.cls` and for each other file one.
 * All files should be from `src/classes2` - violations in `src/classes` should *not* be reported.
 * The violations should appear inline on the commit view on github (annotations)
+    * https://github.com/pmd/pmd-github-action-tests/commits/apex/
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
     * the violation should appear on the correct line. annotations are created at "end line" by github.
       The comment in the file is at begin line and can be earlier.
+    * If the annotations are not showing up here, then the reported file location might be wrong. For the
+      annotations to appear, relative paths must be reported.
 * The violations should appear as build annotations for the build
     * note: the build is run 3 times for each OS
     * in total there are 30 violations: 12 errors, 12 warnings, 6 notices
@@ -70,12 +73,53 @@ Some test cases...
 * In total, there should be 4 reported violations - two in each changed file. One new (foo) and one
   that previously existed (bar).
 * The violations should appear inline on the commit view on github (annotations)
+    * https://github.com/pmd/pmd-github-action-tests/commits/apex/
     * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
     * the violation should appear on the correct line. annotations are created at "end line" by github.
       The comment in the file is at begin line and can be earlier.
+    * If the annotations are not showing up here, then the reported file location might be wrong. For the
+      annotations to appear, relative paths must be reported.
 * The violations should appear as build annotations for the build
-    * note: the buils is run 3 times for each OS
+    * note: the build is run 3 times for each OS
     * in total there are 12 violations: 6 errors, 6 notices
+
+### Verify latest PMD SNAPSHOT
+
+**Description:**
+
+* Integrated as "build" workflow on push
+* Only "rulesets" is configured, everything else is default
+* One change in one existing files
+* Downloading the SNAPSHOT distribution instead of a release
+
+**Execution steps:**
+
+1. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+2. Add two options:
+  1. `        version: '7.0.0-SNAPSHOT'`
+  2. `        downloadUrl: 'https://sourceforge.net/projects/pmd/files/pmd/7.0.0-SNAPSHOT/pmd-dist-7.0.0-SNAPSHOT-bin.zip/download'`
+3. Change file `src/classes/LocalVariableNamingConventionsSample.cls` - copy method `bar` as `foo`.
+4. Push - that's the build that must be verified
+5. Revert and push - restore for next test case
+
+**Expected:**
+
+* The correct PMD version should be downloaded and used (check build logs)
+* In total, there should be 2 reported violations in the changed file. One new (foo) and one
+  that previously existed (bar).
+* The violations should appear inline on the commit view on github (annotations), as "Check notice|warning|failure".
+    * https://github.com/pmd/pmd-github-action-tests/commits/apex/
+    * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
+    * the violation should appear on the correct line. annotations are created at "end line" by github.
+      The comment in the file is at begin line and can be earlier.
+    * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
+    * If the annotations are not showing up here, then the reported file location might be wrong. For the
+      annotations to appear, relative paths must be reported.
+    * Note: The annotation for the existing code might not be visible: If the violation is outside of
+      the diff-context, then GitHub won't show the annotation.
+* The violations should appear as build annotations for the build
+    * note: the build is run 3 times for each OS
+    * in total there are 6 violations: 6 notices
 
 ### Code scanning alerts
 
