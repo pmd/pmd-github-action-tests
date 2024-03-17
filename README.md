@@ -89,6 +89,44 @@ Some test cases...
     * note: the build is run 3 times for each OS
     * in total there are 12 violations: 6 errors, 6 warnings
 
+### Verify latest PMD SNAPSHOT
+
+**Description:**
+
+* Integrated as "build" workflow on push
+* Only "rulesets" is configured, everything else is default
+* One change in one existing files
+* Downloading the SNAPSHOT distribution instead of a release
+
+**Execution steps:**
+
+1. Update version in `build.yml` to be `pmd/pmd-github-action@main` or whatever version to test
+2. Add two options:
+  1. `        version: '7.0.0-SNAPSHOT'`
+  2. `        downloadUrl: 'https://sourceforge.net/projects/pmd/files/pmd/7.0.0-SNAPSHOT/pmd-dist-7.0.0-SNAPSHOT-bin.zip/download'`
+3. Change file `src/main/java/AvoidCatchingThrowableSample.java` - copy method `bar` as `foo`.
+4. Push - that's the build that must be verified
+5. Revert and push - restore for next test case
+
+**Expected:**
+
+* The correct PMD version should be downloaded and used (check build logs)
+* In total, there should be 2 reported violations in the changed file. One new (foo) and one
+  that previously existed (bar).
+* The violations should appear inline on the commit view on github (annotations), as "Check notice|warning|failure".
+    * https://github.com/pmd/pmd-github-action-tests/commits/java/
+    * note: the build is run 3 times for each OS - so every annotation should repeat 3 times
+    * the violation should appear on the correct line. annotations are created at "end line" by github.
+      The comment in the file is at begin line and can be earlier.
+    * This uses this feature: https://github.com/actions/toolkit/tree/main/packages/core#annotations
+    * If the annotations are not showing up here, then the reported file location might be wrong. For the
+      annotations to appear, relative paths must be reported.
+    * Note: The annotation for the existing code might not be visible: If the violation is outside of
+      the diff-context, then GitHub won't show the annotation.
+* The violations should appear as build annotations for the build
+    * note: the build is run 3 times for each OS
+    * in total there are 6 violations: 6 errors
+
 ### Source path is used
 
 **Description:**
