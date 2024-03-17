@@ -154,6 +154,8 @@ Some test cases...
 
 * Build with name "pmd" is successful. There are some build annotations.
 * There is a "PMD Report" artifact on the build that contains the SARIF report.
+* Verify build log of action "github/codeql-action/upload-sarif":
+  * "##[debug]Number of results in upload: 24" or similar should be there in log group "Uploading results".
 * Code scanning alerts are there under the project's security tab
     * <https://github.com/pmd/pmd-github-action-tests/security/code-scanning?query=is%3Aopen+branch%3Ajava>
     * Note: these are rule violations from the quickstart ruleset
