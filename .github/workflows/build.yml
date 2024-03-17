@@ -25,4 +25,4 @@ jobs:
         uploadSarifReport: ${{ runner.os == 'Linux' && 'true' || 'false' }}
         rulesets: 'ruleset.xml,category/apex/codestyle.xml/FieldNamingConventions'
         #version: '7.0.0-SNAPSHOT'
-        #downloadUrl: 'https://sourceforge.net/projects/pmd/files/pmd/7.0.0-SNAPSHOT/pmd-bin-7.0.0-SNAPSHOT.zip/download'
+        #downloadUrl: 'https://sourceforge.net/projects/pmd/files/pmd/7.0.0-SNAPSHOT/pmd-dist-7.0.0-SNAPSHOT-bin.zip/download'
