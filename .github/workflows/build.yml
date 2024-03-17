@@ -18,12 +18,11 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     #- uses: pmd/pmd-github-action@v1
-    #- uses: pmd/pmd-github-action@main
+    - uses: pmd/pmd-github-action@main
     #- uses: pmd/pmd-github-action@features/annotation
     #- uses: adangel/pmd-github-action@support-pmd7
-    - uses: adangel/pmd-github-action@typescript
       with:
         uploadSarifReport: ${{ runner.os == 'Linux' && 'true' || 'false' }}
         rulesets: 'ruleset.xml,category/apex/codestyle.xml/FieldNamingConventions'
-        version: '7.0.0-SNAPSHOT'
-        downloadUrl: 'https://sourceforge.net/projects/pmd/files/pmd/7.0.0-SNAPSHOT/pmd-dist-7.0.0-SNAPSHOT-bin.zip/download'
+        #version: '7.0.0-SNAPSHOT'
+        #downloadUrl: 'https://sourceforge.net/projects/pmd/files/pmd/7.0.0-SNAPSHOT/pmd-dist-7.0.0-SNAPSHOT-bin.zip/download'
